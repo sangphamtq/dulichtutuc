@@ -10,10 +10,12 @@ export default tseslint.config(
         ignores: ['node_modules/**', 'dist/**'],
     },
 
-    // ================= BACKEND =================
     {
         files: ['backend/**/*.ts'],
         languageOptions: {
+            globals: {
+                ...globals.node,
+            },
             parserOptions: {
                 project: './backend/tsconfig.json',
                 tsconfigRootDir: import.meta.dirname,
@@ -25,7 +27,6 @@ export default tseslint.config(
         },
     },
 
-    // ================= FRONTEND (VITE) =================
     {
         files: ['frontend/**/*.{ts,tsx}'],
         languageOptions: {
@@ -40,7 +41,7 @@ export default tseslint.config(
                 },
             },
             globals: {
-                ...globals.browser, // ⭐ FIX document, window
+                ...globals.browser,
             },
         },
         plugins: {
@@ -55,21 +56,15 @@ export default tseslint.config(
             },
         },
         rules: {
-            /* ❌ TẮT rule JS gốc */
             'no-unused-vars': 'off',
             'no-undef': 'off',
-
-            /* ✅ DÙNG rule TypeScript */
             '@typescript-eslint/no-unused-vars': ['warn'],
-
             ...reactHooks.configs.recommended.rules,
-
             'react/react-in-jsx-scope': 'off',
             'react-refresh/only-export-components': 'warn',
         },
     },
 
-    // ================= FRONTEND CONFIG FILES =================
     {
         files: ['frontend/vite.config.ts'],
         languageOptions: {
@@ -83,8 +78,6 @@ export default tseslint.config(
         plugins: {
             '@typescript-eslint': tseslint.plugin,
         },
-        rules: {
-            // KHÔNG dùng type-checked rules
-        },
+        rules: {},
     },
 );
