@@ -13,6 +13,7 @@ export default tseslint.config(
     {
         files: ['backend/**/*.ts'],
         languageOptions: {
+            parser: tseslint.parser,
             globals: {
                 ...globals.node,
             },
@@ -21,9 +22,20 @@ export default tseslint.config(
                 tsconfigRootDir: import.meta.dirname,
             },
         },
+        plugins: {
+            '@typescript-eslint': tseslint.plugin,
+        },
         rules: {
             ...js.configs.recommended.rules,
             ...tseslint.configs.recommendedTypeChecked.rules,
+            '@typescript-eslint/no-unused-vars': [
+                'error',
+                {
+                    argsIgnorePattern: '^_',
+                    varsIgnorePattern: '^_',
+                    caughtErrorsIgnorePattern: '^_',
+                },
+            ],
         },
     },
 
