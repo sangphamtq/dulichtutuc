@@ -1,0 +1,71 @@
+import Link from 'next/link';
+import { ButtonHTMLAttributes } from 'react';
+import { LucideIcon } from 'lucide-react';
+
+type ButtonVariant = 'primary' | 'ghost';
+type ButtonSize = 'sm' | 'md' | 'lg';
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    variant?: ButtonVariant;
+    children: React.ReactNode;
+    href?: string;
+    icon?: LucideIcon;
+    fullWidth?: boolean;
+    className?: string;
+    size?: ButtonSize;
+}
+
+const Button = ({
+    children,
+    variant = 'primary',
+    href,
+    icon: Icon,
+    fullWidth = false,
+    className = '',
+    size = 'md',
+}: ButtonProps) => {
+    const variantClasses: Record<ButtonVariant, string> = {
+        primary: 'bg-primary hover:bg-primary-500 text-white font-semibold transition',
+        ghost: 'bg-transparent hover:bg-green-50 text-black',
+    };
+
+    const sizeClasses: Record<ButtonSize, string> = {
+        sm: 'px-3 py-1 text-sm',
+        md: 'px-5 py-3 text-base',
+        lg: 'px-8 py-4 text-lg',
+    };
+
+    const classNameBase = [
+        'flex items-center gap-2 justify-center cursor-pointer rounded-md select-none hover:-translate-y-0.5 active:translate-y-0 hover:shadow-xl',
+        fullWidth ? 'w-full' : 'w-fit',
+        variantClasses[variant],
+        sizeClasses[size],
+        className,
+    ].join(' ');
+
+    if (href) {
+        return (
+            <Link href={href} className={classNameBase + className}>
+                {Icon && (
+                    <span>
+                        <Icon size={13} />
+                    </span>
+                )}
+                {children}
+            </Link>
+        );
+    }
+
+    return (
+        <div className={classNameBase + className}>
+            {Icon && (
+                <span>
+                    <Icon size={16} />
+                </span>
+            )}
+            {children}
+        </div>
+    );
+};
+
+export default Button;
