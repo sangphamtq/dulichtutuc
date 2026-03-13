@@ -4,6 +4,7 @@ import { LucideIcon } from 'lucide-react';
 
 type ButtonVariant = 'primary' | 'ghost';
 type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonType = 'button' | 'submit' | 'reset';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: ButtonVariant;
@@ -13,6 +14,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     fullWidth?: boolean;
     className?: string;
     size?: ButtonSize;
+    type?: ButtonType; // thêm type cho button
 }
 
 const Button = ({
@@ -23,6 +25,8 @@ const Button = ({
     fullWidth = false,
     className = '',
     size = 'md',
+    type = 'button',
+    ...rest
 }: ButtonProps) => {
     const variantClasses: Record<ButtonVariant, string> = {
         primary: 'bg-primary hover:bg-primary-500 text-white font-semibold transition',
@@ -45,7 +49,7 @@ const Button = ({
 
     if (href) {
         return (
-            <Link href={href} className={classNameBase + className}>
+            <Link href={href} className={classNameBase}>
                 {Icon && (
                     <span>
                         <Icon size={13} />
@@ -57,14 +61,18 @@ const Button = ({
     }
 
     return (
-        <div className={classNameBase + className}>
+        <button
+            type={type}
+            className={classNameBase}
+            {...rest}
+        >
             {Icon && (
                 <span>
                     <Icon size={16} />
                 </span>
             )}
             {children}
-        </div>
+        </button>
     );
 };
 
