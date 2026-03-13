@@ -1,5 +1,6 @@
 'use client';
 
+import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 
 interface GoogleButtonProps {
@@ -9,14 +10,14 @@ interface GoogleButtonProps {
 
 export function GoogleButton({
     label = 'Tiếp tục với Google',
-    // callbackUrl = "/",
+    callbackUrl = "/",
 }: GoogleButtonProps) {
     const [loading, setLoading] = useState(false);
 
     const handleGoogleLogin = async () => {
         setLoading(true);
         try {
-            // await signIn("google", { callbackUrl });
+            await signIn("google", { callbackUrl });
         } catch {
             setLoading(false);
         }

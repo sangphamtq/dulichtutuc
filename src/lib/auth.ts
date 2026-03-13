@@ -6,13 +6,15 @@ import bcrypt from "bcryptjs";
 import { prisma } from "./db";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  trustHost: true,
+  secret: process.env.AUTH_SECRET,
   adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
 
   pages: {
-    signIn: "/auth/login",
-    error: "/auth/login",
-    verifyRequest: "/auth/verify-email",
+    signIn: "/dang-nhap",
+    error: "/dang-nhap",
+    verifyRequest: "/verify-email",
   },
 
   providers: [
@@ -36,6 +38,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
 
       async authorize(credentials) {
+        console.log("credentials", credentials)
         if (!credentials?.email || !credentials?.password) {
           throw new Error("MISSING_CREDENTIALS");
         }
@@ -64,7 +67,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!isValid) {
           throw new Error("INVALID_PASSWORD");
         }
-
+        console.log("user", user)
         return {
           id: user.id,
           email: user.email,

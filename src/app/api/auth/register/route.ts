@@ -47,7 +47,7 @@ export async function POST(req: Request) {
       },
     });
 
-    await sendVerificationEmail(email);
+    await sendVerificationEmail(email, token, name);
 
     return NextResponse.json(
       {
