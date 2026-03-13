@@ -3,6 +3,7 @@
 import React, { InputHTMLAttributes, useState } from 'react';
 import { CircleAlert, Eye, EyeOff, LucideIcon } from 'lucide-react';
 import Label from './Label';
+import { cn } from '../lib/utils';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;
@@ -17,7 +18,7 @@ export default function Input({
     required,
     error,
     id,
-    style,
+    className,
     type,
     onFocus,
     onBlur,
@@ -30,73 +31,50 @@ export default function Input({
     const [showPassword, setShowPassword] = useState(false);
     const resolvedType = isPassword ? (showPassword ? 'text' : 'password') : type;
 
-    const baseInputStyle: React.CSSProperties = {
-        width: '100%',
-        padding: icon
-            ? `11px ${isPassword ? '42px' : '14px'} 11px 42px`
-            : `11px ${isPassword ? '42px' : '14px'} 11px 14px`,
-        border: `1.5px solid ${error ? '#fca5a5' : '#e4e9f0'}`,
-        borderRadius: 10,
-        fontSize: 14,
-        color: '#1a202c',
-        background: error ? '#fff5f5' : '#f8fafc',
-        fontFamily: 'inherit',
-        outline: 'none',
-        transition: 'border-color .2s, box-shadow .2s, background .2s',
-        boxSizing: 'border-box',
-        ...style,
-    };
-
-    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-        e.currentTarget.style.borderColor = error ? '#f87171' : '#4a90d9';
-        e.currentTarget.style.background = '#fff';
-        e.currentTarget.style.boxShadow = error
-            ? '0 0 0 3px rgba(248,113,113,.12)'
-            : '0 0 0 3px rgba(74,144,217,.3)';
-        onFocus?.(e);
-    };
-
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        e.currentTarget.style.borderColor = error ? '#fca5a5' : '#e4e9f0';
-        e.currentTarget.style.background = error ? '#fff5f5' : '#f8fafc';
-        e.currentTarget.style.boxShadow = 'none';
-        onBlur?.(e);
-    };
-
     return (
-        <div style={{ marginBottom: 14 }}>
+        <div className="mb-3.5">
             {label && (
                 <Label htmlFor={inputId} required={required}>
                     {label}
                 </Label>
             )}
 
-            <div style={{ position: 'relative' }}>
+            <div className="relative">
                 {/* Left icon */}
                 {LucideIcon && (
-                    <span
-                        style={{
-                            position: 'absolute',
-                            left: 13,
-                            top: '50%',
-                            transform: 'translateY(-50%)',
-                            opacity: 0.4,
-                            pointerEvents: 'none',
-                            display: 'flex',
-                        }}
-                    >
-                        <LucideIcon size={15} color="#334155" strokeWidth={1.8} />
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none flex opacity-40">
+                        <LucideIcon size={15} color="currentColor" strokeWidth={1.8} />
                     </span>
                 )}
 
                 <input
                     id={inputId}
                     type={resolvedType}
-                    style={baseInputStyle}
-                    onFocus={handleFocus}
-                    onBlur={handleBlur}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
                     aria-invalid={!!error}
                     aria-describedby={error ? `${inputId}-error` : undefined}
+                    className={cn(
+                        // base
+                        'w-full rounded-[10px] text-sm font-[inherit] outline-none',
+                        'border-[1.5px] transition-[border-color,box-shadow,background] duration-200',
+                        // padding — trái: icon ? 42px : 14px, phải: password ? 42px : 14px
+                        icon ? 'pl-[42px]' : 'pl-3.5',
+                        isPassword ? 'pr-[42px]' : 'pr-3.5',
+                        'py-[11px]',
+                        // color — normal
+                        !error && [
+                            'border-stone-200 bg-stone-50 text-stone-900',
+                            'hover:border-stone-300',
+                            'focus:border-primary focus:bg-white focus:shadow-[0_0_0_3px_rgba(14,165,233,0.2)]',
+                        ],
+                        // color — error
+                        error && [
+                            'border-red-300 bg-red-50 text-stone-900',
+                            'focus:border-red-400 focus:bg-white focus:shadow-[0_0_0_3px_rgba(248,113,113,0.12)]',
+                        ],
+                        className,
+                    )}
                     {...rest}
                 />
 
@@ -106,22 +84,9 @@ export default function Input({
                         type="button"
                         onClick={() => setShowPassword((prev) => !prev)}
                         aria-label={showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
-                        style={{
-                            position: 'absolute',
-                            right: 12,
-                            top: '50%',
-                            transform: 'translateY(-50%)',
-                            background: 'none',
-                            border: 'none',
-                            padding: 2,
-                            cursor: 'pointer',
-                            display: 'flex',
-                            alignItems: 'center',
-                            color: '#94a3b8',
-                            transition: 'color .15s',
-                        }}
-                        onMouseEnter={(e) => (e.currentTarget.style.color = '#4a90d9')}
-                        onMouseLeave={(e) => (e.currentTarget.style.color = '#94a3b8')}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center p-0.5
+                                   border-none bg-transparent cursor-pointer
+                                   text-stone-400 hover:text-ocean-400 transition-colors duration-150"
                     >
                         {showPassword ? (
                             <EyeOff size={16} strokeWidth={1.8} />
@@ -136,16 +101,9 @@ export default function Input({
                 <p
                     id={`${inputId}-error`}
                     role="alert"
-                    style={{
-                        fontSize: 11.5,
-                        color: '#ef4444',
-                        marginTop: 5,
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 4,
-                    }}
+                    className="flex items-center gap-1 mt-1 text-[11.5px] text-red-500"
                 >
-                    <CircleAlert size={11} color="#ef4444" strokeWidth={2} />
+                    <CircleAlert size={11} strokeWidth={2} />
                     {error}
                 </p>
             )}
