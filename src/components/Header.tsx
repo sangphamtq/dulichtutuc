@@ -30,13 +30,13 @@ export default function Header() {
                         <div className="w-9 h-9 rounded-xl bg-linear-to-br from-primary-500 to-primary-300 flex items-center justify-center">
                             <MountainSnow className="size-4 text-white" />
                         </div>
-                        <span className="text-white font-bold text-xl">Phượt<span className="text-primary-200">Viet</span></span>
+                        <span className="text-white font-bold text-xl">Phượt<span className="text-primary-400">Viet</span></span>
                     </Link>
                     <div className="hidden md:flex items-center text-sm">
-                        <Link href="/" className="text-white/90 hover:text-primary-300 transition font-medium px-4 py-2">Khám phá</Link>
-                        <a href="#" className="text-white/90 hover:text-primary-300 transition font-medium px-4 py-2">Lập kế hoạch</a>
-                        <a href="#" className="text-white/90 hover:text-primary-300 transition font-medium px-4 py-2">Cộng đồng</a>
-                        <a href="#" className="text-white/90 hover:text-primary-300 transition font-medium px-4 py-2">Blog</a>
+                        <Link href="/" className="text-white/90 hover:text-primary-400 transition font-medium px-4 py-2">Khám phá</Link>
+                        <a href="#" className="text-white/90 hover:text-primary-400 transition font-medium px-4 py-2">Lập kế hoạch</a>
+                        <a href="#" className="text-white/90 hover:text-primary-400 transition font-medium px-4 py-2">Cộng đồng</a>
+                        <a href="#" className="text-white/90 hover:text-primary-400 transition font-medium px-4 py-2">Blog</a>
                     </div>
                     {session ? (
                         <div className="flex gap-1">

@@ -14,11 +14,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
             <div className="overflow-hidden flex w-[min(820px,95vw)] min-h-[600px] shadow-2xl rounded-2xl">
                 {/* Left panel */}
                 <div
-                    className="relative shrink-0 w-1/2 flex flex-col justify-between p-9 overflow-hidden"
-                    style={{
-                        background:
-                            'linear-gradient(150deg, #064e3b 0%, #065f46 40%, #047857 75%, #059669 100%)',
-                    }}
+                    className="relative shrink-0 w-1/2 flex flex-col justify-between p-9 overflow-hidden bg-main"
                 >
                     {/* Leaf pattern overlay */}
                     <div
