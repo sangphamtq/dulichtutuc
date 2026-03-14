@@ -1,6 +1,6 @@
 "use client"
 
-import { Bookmark, LogOut, MapPin, MountainSnow, Settings, User } from "lucide-react"
+import { Bookmark, LogOut, MapPin, MountainSnow, Settings, Shield, User } from "lucide-react"
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react";
@@ -75,8 +75,13 @@ export default function Header() {
 
                                         {/* User info header */}
                                         <div className="px-4 py-3 border-b border-white/10">
-                                            <p className="text-white font-semibold text-sm truncate">
+                                            <p className="text-white font-semibold text-sm truncate flex items-center gap-2">
                                                 {session.user?.name || "Người dùng"}
+                                                {session.user?.role === "ADMIN" && (
+                                                    <span className="bg-primary-200/20 text-primary text-[10px] font-bold px-2 py-0.5 rounded uppercase ml-1">
+                                                        Admin
+                                                    </span>
+                                                )}
                                             </p>
                                             <p className="text-white/40 text-xs truncate mt-0.5">
                                                 {session.user?.email}
@@ -90,14 +95,25 @@ export default function Header() {
                                                 { icon: <MapPin className="w-4 h-4 text-white/40 group-hover:text-white transition" />, label: "Chuyến đi của tôi" },
                                                 { icon: <Bookmark className="w-4 h-4 text-white/40 group-hover:text-white transition" />, label: "Đã lưu" },
                                                 { icon: <Settings className="w-4 h-4 text-white/40 group-hover:text-white transition" />, label: "Cài đặt" },
-                                            ].map(({ icon, label }) => (
-                                                <button
+                                                ...(session?.user?.role === "ADMIN"
+                                                    ? [
+                                                        {
+                                                            icon: <Shield className="fas fa-shield-alt w-4 h-4 text-white/40 group-hover:text-white transition" />,
+                                                            label: "Quản trị",
+                                                            href: "/admin"
+                                                        }
+                                                    ]
+                                                    : []
+                                                )
+                                            ].map(({ icon, label, href = '/' }) => (
+                                                <Link
                                                     key={label}
                                                     className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-white/80 hover:text-white hover:bg-white/10 text-sm font-medium transition-all text-left cursor-pointer group"
+                                                    href={href}
                                                 >
                                                     {icon}
                                                     {label}
-                                                </button>
+                                                </Link>
                                             ))}
                                         </div>
 
@@ -114,15 +130,6 @@ export default function Header() {
                                     </div>
                                 )}
                             </div>
-                            {session?.user.role === "ADMIN" && (
-                                <Button
-                                    size="sm"
-                                    href="/admin"
-                                    className="ml-2 text-white/80 border-white/20"
-                                >
-                                    Quản trị
-                                </Button>
-                            )}
                         </div>
                     ) : (
                         <div className="flex items-center gap-1">
