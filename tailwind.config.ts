@@ -1,90 +1,117 @@
-// tailwind.config.ts
-import type { Config } from 'tailwindcss';
-
-const config: Config = {
-    content: ['./src/**/*.{ts,tsx}'],
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    content: ["./src/**/*.{js,ts,jsx,tsx,html}"],
     theme: {
-        extend: {
-            colors: {
-                // --- Ramps ---
-                primary: {
-                    DEFAULT: '#059669',
-                    50: '#eaf7f0',
-                    100: '#b8e8d0',
-                    200: '#7dcfaa',
-                    300: '#3dae80',
-                    400: '#059669', // primary
-                    500: '#047857',
-                    600: '#065f46',
-                    700: '#064e3b',
-                    800: '#043a2c',
-                    900: '#022619',
-                },
-                ocean: {
-                    50: '#e0f4fb',
-                    100: '#b3e5f8',
-                    200: '#7dd3f0',
-                    300: '#38bdf8',
-                    400: '#0ea5e9', // secondary
-                    500: '#0284c7',
-                    600: '#0369a1',
-                    700: '#075985',
-                    800: '#0c4a6e',
-                    900: '#082f49',
-                },
-                sunset: {
-                    50: '#fff7e6',
-                    100: '#fde68a',
-                    200: '#fbbf24',
-                    300: '#f59e0b', // accent
-                    400: '#d97706',
-                    500: '#b45309',
-                    600: '#92400e',
-                    700: '#78350f',
-                    800: '#5c2800',
-                    900: '#3d1a00',
-                },
-                coral: {
-                    50: '#fff0ed',
-                    100: '#ffd0c4',
-                    200: '#ffaa93',
-                    300: '#ff7c5c',
-                    400: '#f05035',
-                    500: '#c93d24',
-                    600: '#a62d17',
-                    700: '#84210e',
-                    800: '#611507',
-                    900: '#3e0c03',
-                },
-                stone: {
-                    50: '#f8f7f4', // background
-                    100: '#eceae3',
-                    200: '#d6d3c8',
-                    300: '#b3afa3',
-                    400: '#857f74',
-                    500: '#605a50', // subtext / link
-                    600: '#4a4540',
-                    700: '#35302c',
-                    800: '#231f1c',
-                    900: '#131110', // text
-                },
-
-                // --- Semantic tokens ---
-                //primary: '#059669', // forest-400
-                secondary: '#0ea5e9', // ocean-400
-                accent: '#f59e0b', // sunset-300
-                link: '#605a50', // stone-500
-                'link-hover': '#35302c', // stone-700
-                subtext: '#605a50', // stone-500
-            },
-
-            backgroundColor: {
-                page: '#f8f7f4', // stone-50
-                surface: '#ffffff',
-            },
+      extend: {
+        colors: {
+          // ─── Brand Primary (Orange) ───────────────────────────
+          primary: {
+            50:  "#fff7ed",
+            100: "#ffedd4",
+            200: "#ffd7a8",
+            300: "#ffb86a",
+            400: "#ff8904",
+            500: "#ff6900", // ← main CTA button
+            600: "#f54a00",
+            700: "#ca3500",
+            800: "#9f2d00",
+            900: "#7e2a0c",
+            DEFAULT: "#F59300",
+          },
+  
+          // ─── Dark Blue (Hero / Navbar background) ────────────
+          dark: {
+            50:  "#EFF2F7",
+            100: "#D5DCE8",
+            200: "#B0BCCE",
+            300: "#8090AA",
+            400: "#5C6E88",
+            500: "#3D5470",
+            600: "#2A3F58",
+            700: "#1E3448",
+            800: "#152738",
+            900: "#111E2C", // ← hero section bg
+            950: "#0A1420", // ← darkest nav / footer
+            DEFAULT: "#111E2C",
+          },
+  
+          // ─── Neutral Gray (Text / Surfaces) ──────────────────
+          gray: {
+            0:   "#FFFFFF",
+            50:  "#F7F8FA", // ← page bg
+            100: "#EDEEF2", // ← card / section bg
+            200: "#DFE1E8",
+            300: "#C8CCD6",
+            400: "#A8AEBB",
+            500: "#8A90A0",
+            600: "#6A7080",
+            700: "#505666",
+            800: "#353A4A",
+            900: "#1A1D2A",
+            DEFAULT: "#505666",
+          },
+  
+          // ─── Semantic ─────────────────────────────────────────
+          success: {
+            bg:      "#E8F5E9",
+            DEFAULT: "#2E7D32",
+            dark:    "#1B5E20",
+          },
+          warning: {
+            bg:      "#FFF8E1",
+            DEFAULT: "#F57F17",
+            dark:    "#E65100",
+          },
+          danger: {
+            bg:      "#FFEBEE",
+            DEFAULT: "#C62828",
+            dark:    "#B71C1C",
+          },
+          info: {
+            bg:      "#E3F2FD",
+            DEFAULT: "#1565C0",
+            dark:    "#0D47A1",
+          },
+  
+          // ─── Difficulty badges (Trekking) ─────────────────────
+          difficulty: {
+            "easy-bg":    "#E8F5E9",
+            easy:         "#388E3C",
+            "medium-bg":  "#FFF3E0",
+            medium:       "#EF6C00",
+            "hard-bg":    "#FFEBEE",
+            hard:         "#C62828",
+          },
         },
+  
+        // ─── Typography ─────────────────────────────────────────
+        fontFamily: {
+          sans: ["Inter", "Be Vietnam Pro", "ui-sans-serif", "system-ui"],
+          display: ['"Be Vietnam Pro"', "Inter", "sans-serif"],
+        },
+  
+        // ─── Border radius ───────────────────────────────────────
+        borderRadius: {
+          sm:   "6px",
+          md:   "10px",
+          lg:   "14px",
+          xl:   "20px",
+          "2xl":"28px",
+          full: "9999px",
+        },
+  
+        // ─── Box shadow ──────────────────────────────────────────
+        boxShadow: {
+          card:  "0 2px 12px rgba(17, 30, 44, 0.08)",
+          "card-hover": "0 8px 28px rgba(17, 30, 44, 0.14)",
+          badge: "0 1px 4px rgba(0,0,0,0.08)",
+        },
+        
+        // ─── Background image ────────────────────────────────────
+        backgroundImage: {
+            main: "linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f2027 100%)"
+        }
+      },
     },
     plugins: [],
-};
-
-export default config;
+  };

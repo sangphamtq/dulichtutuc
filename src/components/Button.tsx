@@ -29,8 +29,8 @@ const Button = ({
     ...rest
 }: ButtonProps) => {
     const variantClasses: Record<ButtonVariant, string> = {
-        primary: 'bg-linear-to-br from-primary-500 to-primary-300 hover:bg-linear-to-tl text-white font-semibold transition',
-        ghost: 'bg-transparent hover:bg-primary-300/20! text-black font-semibold transition',
+        primary: 'bg-linear-to-br from-primary-500 to-primary-400 hover:from-primary-700 hover:to-primary-400 text-white font-semibold transition',
+        ghost: 'bg-transparent hover:bg-primary-500/10! text-black font-semibold transition',
     };
 
     const sizeClasses: Record<ButtonSize, string> = {
@@ -40,7 +40,7 @@ const Button = ({
     };
 
     const classNameBase = [
-        'flex items-center gap-2 justify-center cursor-pointer rounded-md select-none hover:-translate-y-0.5 active:translate-y-0 hover:shadow-xl',
+        'flex items-center gap-2 justify-center cursor-pointer rounded-md select-none active:scale-99',
         fullWidth ? 'w-full' : 'w-fit',
         variantClasses[variant],
         sizeClasses[size],

@@ -66,7 +66,7 @@ export default function Input({
                         !error && [
                             'border-stone-200 bg-stone-50 text-stone-900',
                             'hover:border-stone-300',
-                            'focus:border-primary focus:bg-white focus:shadow-[0_0_0_3px_rgba(14,165,233,0.2)]',
+                            'focus:border-primary focus:bg-white focus:shadow-[0_0_0_3px_rgba(255,105,0,0.2)]',
                         ],
                         // color — error
                         error && [

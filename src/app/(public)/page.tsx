@@ -4,7 +4,7 @@ import Button from "@/src/components/Button";
 
 export default function Home() {
     return (
-        <section className="hero-bg min-h-screen flex items-center relative overflow-hidden pt-16">
+        <section className="bg-main min-h-screen flex items-center relative overflow-hidden pt-16">
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-20 left-10 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
@@ -14,10 +14,10 @@ export default function Home() {
                     <div>
                         <div className="inline-flex items-center gap-2 glass text-orange-300 text-xs font-semibold px-4 py-2 rounded-full mb-6">
                             <span className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></span>
-                            🇻🇳 Nền tảng phượt hàng đầu Việt Nam
+                            Nền tảng phượt hàng đầu Việt Nam
                         </div>
                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-                            Khám phá<br /><span className="text-primary-300">Việt Nam</span><br />theo cách của bạn
+                            Khám phá<br /><span className="text-primary-400">Việt Nam</span><br />theo cách của bạn
                         </h1>
                         <p className="text-white/60 text-lg leading-relaxed mb-8 max-w-lg">Tìm kiếm địa điểm, lập kế hoạch chuyến đi, ước tính chi phí – tất cả trong một nơi. Dành cho dân phượt, sinh viên và những ai yêu du lịch tự túc.</p>
                         <div className="glass rounded-2xl p-2 flex items-center gap-2 search-glow transition-all mb-8 max-w-lg">
@@ -26,7 +26,7 @@ export default function Home() {
                                 <input type="text" placeholder="Tìm kiếm địa điểm, tỉnh thành..." className="bg-transparent text-white placeholder-white/40 text-sm w-full outline-none py-2" />
                             </div>
                             {/* <button className="bg-linear-to-r from-orange-500 to-orange-400 text-white font-semibold text-sm px-5 py-3 rounded-xl hover:from-orange-400 hover:to-yellow-400 transition-all whitespace-nowrap">Tìm kiếm</button> */}
-                            <Button>Tìm kiếm</Button>
+                            <Button className="rounded-xl">Tìm kiếm</Button>
                         </div>
                         <div className="flex flex-wrap gap-2 mb-10">
                             <span className="text-white/50 text-sm mr-1 self-center">Phổ biến:</span>
