@@ -7,7 +7,8 @@ const config: Config = {
         extend: {
             colors: {
                 // --- Ramps ---
-                forest: {
+                primary: {
+                    DEFAULT: '#059669',
                     50: '#eaf7f0',
                     100: '#b8e8d0',
                     200: '#7dcfaa',
@@ -69,7 +70,7 @@ const config: Config = {
                 },
 
                 // --- Semantic tokens ---
-                primary: '#059669', // forest-400
+                //primary: '#059669', // forest-400
                 secondary: '#0ea5e9', // ocean-400
                 accent: '#f59e0b', // sunset-300
                 link: '#605a50', // stone-500

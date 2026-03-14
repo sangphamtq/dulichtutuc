@@ -25,3 +25,10 @@ body {
     opacity: 0;
     animation-fill-mode: forwards;
 }
+
+.nav-blur {
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    background: #0f172ad9;
+    border-bottom: 1px solid #ffffff14;
+}

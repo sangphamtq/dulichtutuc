@@ -29,12 +29,12 @@ const Button = ({
     ...rest
 }: ButtonProps) => {
     const variantClasses: Record<ButtonVariant, string> = {
-        primary: 'bg-primary hover:bg-primary-500 text-white font-semibold transition',
-        ghost: 'bg-transparent hover:bg-green-50 text-black',
+        primary: 'bg-linear-to-br from-primary-500 to-primary-300 hover:bg-linear-to-tl text-white font-semibold transition',
+        ghost: 'bg-transparent hover:bg-primary-300/20! text-black font-semibold transition',
     };
 
     const sizeClasses: Record<ButtonSize, string> = {
-        sm: 'px-3 py-1 text-sm',
+        sm: 'px-4 py-2 text-sm',
         md: 'px-5 py-3 text-base',
         lg: 'px-8 py-4 text-lg',
     };
